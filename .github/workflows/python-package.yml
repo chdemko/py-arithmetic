@@ -15,8 +15,8 @@ jobs:
       #----------------------------------------------
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@master
+        with:
+          submodules: recursive
       - name: Set up python
         id: setup-python
         uses: actions/setup-python@v4
