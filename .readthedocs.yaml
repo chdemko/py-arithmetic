@@ -13,6 +13,10 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.11"
+  jobs:
+    pre_create_environment:
+      - curl -sSL https://install.python-poetry.org | python -
+      - poetry install
     # You can also specify other tool versions:
     # nodejs: "19"
     # rust: "1.64"
