@@ -13,9 +13,6 @@ def build():
         )
     ]
 
-    for extension in extensions:
-        extension.cython_directives = {"embedsignature": True}
-
     ext_modules = cythonize(
         extensions,
         compiler_directives={"binding": True, "language_level": 3},
