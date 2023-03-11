@@ -6,7 +6,7 @@ Install the **py-arithmetic** package
 Installation
 ------------
 
-Install *py-galactic-arithmetic* using the bash command
+Install *py-arithmetic* using the bash command
 
 .. code-block:: shell-session
 
@@ -25,7 +25,7 @@ Build the documentation using the bash commands:
 Testing
 -------
 
-Test *py-galactic-arithmetic* using the bash command:
+Test *py-arithmetic* using the bash command:
 
 .. code-block:: shell-session
 
