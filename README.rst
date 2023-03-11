@@ -1,7 +1,7 @@
 Install the **py-arithmetic** package
 =====================================
 
-|cmake| |Coveralls| |Documentation Status|
+|cmake| |Documentation Status|
 
 Installation
 ------------
