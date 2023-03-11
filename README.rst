@@ -1,6 +1,8 @@
 Install the **py-arithmetic** package
 =====================================
 
+|cmake| |Coveralls| |Documentation Status|
+
 Installation
 ------------
 
@@ -31,3 +33,8 @@ Test *py-galactic-arithmetic* using the bash command:
     $ poetry run tox -e style
     $ poetry run tox -e linter
 
+
+.. |cmake| image:: https://github.com/chdemko/py-arithmetic/actions/workflows/python-package.yml/badge.svg
+   :target: https://github.com/chdemko/py-arithmetic/actions
+.. |Documentation Status| image:: https://img.shields.io/readthedocs/py-arithmetic.svg
+   :target: http://py-arithmetic.readthedocs.io/en/latest/?badge=latest
