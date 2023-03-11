@@ -10,7 +10,7 @@ project = "py-arithmetic"
 version = "0.1.0"
 
 year = date.today().year
-copyright = "2018-%s, The GALACTIC Organization" % year
+copyright = "2022-%s, %s" % (year, author)
 
 sys.path.insert(0, os.path.abspath(".."))
 
