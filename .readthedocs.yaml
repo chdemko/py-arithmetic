@@ -15,8 +15,8 @@ build:
     python: "3.11"
   jobs:
     pre_create_environment:
-      - curl -sSL https://install.python-poetry.org | python -
-      - poetry install
+      - curl -sSL https://install.python-poetry.org | POETRY_HOME=. python -
+      - ./bin/poetry install
     # You can also specify other tool versions:
     # nodejs: "19"
     # rust: "1.64"
