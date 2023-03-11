@@ -125,4 +125,3 @@ html_sidebars = {
         "searchbox.html",
     ]
 }
-
