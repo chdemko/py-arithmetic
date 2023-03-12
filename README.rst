@@ -6,12 +6,24 @@ Install the **py-arithmetic** package
 Installation
 ------------
 
-Install *py-arithmetic* using the bash command
+Install *py-arithmetic* using the bash commands:
 
 .. code-block:: shell-session
 
+    $ git clone https://github.com/chdemko/py-arithmetic.git
+    $ cd py-arithmetic
+    $ git submodule update --init --recursive
     $ poetry install --with docs
 
+Building
+--------
+
+Build *py-arithmetic* using the bash commands:
+
+.. code-block:: shell-session
+
+    $ poetry build
+    $ ls dist
 
 Documentation
 -------------
@@ -25,7 +37,7 @@ Build the documentation using the bash commands:
 Testing
 -------
 
-Test *py-arithmetic* using the bash command:
+Test *py-arithmetic* using the bash commands:
 
 .. code-block:: shell-session
 
