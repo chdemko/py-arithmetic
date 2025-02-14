@@ -15,7 +15,6 @@ build:
     python: '3.11'
   commands:
   - pip install poetry
-  - poetry config virtualenvs.create false
   - poetry install --with docs
   - poetry run sphinx-build docs/ $READTHEDOCS_OUTPUT/html/
 
