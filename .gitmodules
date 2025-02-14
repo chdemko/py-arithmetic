@@ -1,3 +1,3 @@
-[submodule "arithmetic/c-arithmetic"]
-	path = arithmetic/c-arithmetic
+[submodule "src/arithmetic/c-arithmetic"]
+	path = src/arithmetic/c-arithmetic
 	url = https://github.com/chdemko/c-arithmetic.git

@@ -1,0 +1,27 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: check-toml
+  - id: check-yaml
+
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.14.0
+  hooks:
+  - id: pretty-format-toml
+    args: [--autofix, --no-sort]
+  - id: pretty-format-yaml
+    args: [--autofix]
+
+- repo: local
+  hooks:
+  - id: format
+    name: format
+    entry: hatch fmt --check
+    language: system
+    pass_filenames: false
+  - id: lock
+    name: lock
+    entry: uv lock --upgrade
+    language: system
+    pass_filenames: false

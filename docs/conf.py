@@ -1,20 +1,21 @@
-#!/usr/bin/env python3
+"""The configuration module for sphinx."""
 
+import datetime
 import os
-import sys
+from pathlib import Path
 
-from datetime import date
+import tomllib
 
-author = "Christophe Demko"
-project = "py-arithmetic"
-version = "0.1.0"
+with Path("..", "pyproject.toml").resolve().open("rb") as f:
+    data = tomllib.load(f)
+    project = data["project"]["name"]
+    author = ",".join(author["name"] for author in data["project"]["authors"])
+version = os.popen("hatch version").readline().strip()  # noqa: S605, S607
+year = datetime.datetime.now(tz=datetime.UTC).date().year
+# noinspection PyShadowingBuiltins
+copyright = f"2022-{year}, {author}"
 
-year = date.today().year
-copyright = "2022-%s, %s" % (year, author)
-
-sys.path.insert(0, os.path.abspath(".."))
-
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
+python_path = str(Path("..").resolve())
 
 # -- General configuration ------------------------------------------------
 
@@ -36,18 +37,13 @@ add_module_names = False
 # Napoleon settings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = True
-# napoleon_include_init_with_doc = False
 napoleon_include_init_with_doc = True
 napoleon_include_private_with_doc = False
 napoleon_include_special_with_doc = True
-# napoleon_use_admonition_for_examples = False
-# napoleon_use_admonition_for_notes = False
-# napoleon_use_admonition_for_references = False
 napoleon_use_admonition_for_examples = True
 napoleon_use_admonition_for_notes = True
 napoleon_use_admonition_for_references = True
 napoleon_use_ivar = False
-# napoleon_use_ivar = True
 napoleon_use_param = True
 napoleon_use_rtype = True
 
@@ -60,7 +56,7 @@ autodoc_member_order = "bysource"
 templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
-source_suffix = [".rst"]
+source_suffix = {".rst": "restructuredtext"}
 
 # The master toctree document.
 master_doc = "index"
@@ -97,9 +93,8 @@ html_theme = "sphinx_rtd_theme"
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
 html_theme_options = {
-    "navigation_depth": 2,
+    "navigation_depth": 3,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -118,5 +113,5 @@ html_sidebars = {
     "**": [
         "relations.html",  # needs 'show_related': True theme option to display
         "searchbox.html",
-    ]
+    ],
 }

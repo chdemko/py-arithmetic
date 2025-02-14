@@ -1,5 +1,5 @@
-# distutils: sources = arithmetic/c-arithmetic/src/numeric/arithmetic.c arithmetic/c-arithmetic/src/numeric/gcd.c
-# distutils: include_dirs = arithmetic/c-arithmetic/src/numeric
+# distutils: sources = src/arithmetic/c-arithmetic/src/numeric/arithmetic.c
+# distutils: include_dirs = src/arithmetic/c-arithmetic/src/numeric
 # distutils: extra_compile_args = -O3
 
 cimport arithmetic.c_arithmetic
@@ -10,9 +10,9 @@ def gcd(a: int, b: int) -> int:
     
     Parameters
     ----------
-    a : int
+    a
         The first number
-    b : int
+    b
         The second number
 
     Returns
@@ -28,9 +28,9 @@ def lcm(a: int, b: int) -> int:
     
     Parameters
     ----------
-    a : int
+    a
         The first number
-    b : int
+    b
         The second number
 
     Returns

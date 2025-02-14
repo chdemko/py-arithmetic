@@ -1,86 +1,123 @@
 [build-system]
-    requires = [
-      "poetry-core>=1.0.0",
-      "Cython>=3.0,<3.1",
-      "setuptools~=69.0.2",
-    ]
-    build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry]
-    name = "py-arithmetic"
-    version = "0.1.0"
-    description = "A sample cython wrapper"
-    authors = ["Christophe Demko <chdemko@gmail.com>"]
-    license = "BSD-3-Clause"
-    readme = "README.rst"
-    packages = [{ include = "arithmetic" }]
-    exclude = [
-        "arithmetic/**/*.so",
-        "arithmetic/**/*.pxd",
-        "arithmetic/**/*.c",
-        "arithmetic/**/*.pyx",
-        "arithmetic/c-arithmetic",
-    ]
-    include = [
-        { path = "arithmetic/**/*.so", format = "wheel" },
-        { path = "arithmetic/**/*.pxd", format = "sdist" },
-        { path = "arithmetic/**/*.pyx", format = "sdist" },
-        { path = "arithmetic/c-arithmetic/**/*", format = "sdist" },
-    ]
+[project]
+version = "0.1.0"
+name = "py-arithmetic"
+description = "A sample cython wrapper"
+readme = "README.rst"
+requires-python = ">=3.10,<3.14"
+license = {text = "BSD-3-Clause"}
+license-files = {paths = ["LICENSE"]}
+authors = [{name = "Christophe Demko", email = "chdemko@gmail.com"}]
 
-[tool.poetry.build]
-    generate-setup-file = false
-    script = "build.py"
+[tool.hatch.build]
+include = [
+  "src/**/*.py",
+  "src/**/*.pyi",
+  "src/**/py.typed"
+]
 
-[tool.poetry.dependencies]
-    python = "^3.10"
+[tool.hatch.build.targets.wheel]
+packages = ["src/arithmetic"]
+include = [
+  "src/**/*.so"
+]
+exclude = [
+  "src/arithmetic/c-arithmetic",
+  "src/**/*.c",
+  "src/**/*.pyx",
+  "src/**/*.pxd"
+]
 
-[tool.poetry.group.dev.dependencies]
-    tox = "^4.11.4"
+[tool.hatch.build.targets.wheel.hooks.custom]
+dependencies = [
+  "setuptools~=75.8",
+  "Cython~=3.0"
+]
 
-    # Formatter
-    black = {extras = ["jupyter"], version = "^23.11.0"}
+[tool.hatch.build.targets.sdist]
+packages = ["src"]
+include = [
+  "src/**/*.pyx",
+  "src/**/*.pxd"
+]
+exclude = [
+  "src/arithmetic/c-arithmetic",
+  "src/**/*.c",
+  "src/**/*.so"
+]
 
-    # Tests
-    pytest = "^7.4.3"
-    pytest-cov = "^4.1.0"
-    ipython = "^8.18.1"
+[tool.hatch.envs.docs]
+dependencies = [
+  "Sphinx~=8.1",
+  "sphinx-rtd-theme~=3.0",
+  "sphinx-copybutton~=0.5",
+  "nbsphinx~=0.9",
+  "sphinxcontrib-plantuml~=0.30",
+  "sphinx-autodoc-typehints~=3.0",
+  "sphinx-codeautolink~=0.16"
+]
 
-    # Style checkers
-    doc8 = "^0.11.2"
-    mypy = "^1.7.1"
-    flake8 = "^6.1.0"
-    flake8-annotations-complexity = "^0.0.7"
-    flake8-black = "^0.3.6"
-    flake8-blind-except = "^0.2.1"
-    flake8-bugbear = "^23.12.2"
-    flake8-builtins = "^2.2.0"
-    flake8-cognitive-complexity = "^0.1.0"
-    flake8-comprehensions = "^3.14.0"
-    flake8-docstrings = "^1.7.0"
-    flake8-expression-complexity = "^0.0.11"
-    flake8-fixme = "^1.1.1"
-    flake8-functions = "^0.0.7"
-    flake8-import-order = "^0.18.2"
-    flake8-mypy = "^17.8.0"
-    flake8-pyi = "^23.11.0"
-    flake8-pydocstyle = "^0.2.3"
-    flake8-return = "^1.2.0"
-    flake8-simplify = "^0.19.3"
-    flake8-spellcheck = "^0.28.0"
-    flake8-use-fstring = "^1.4"
-    flake8-variables-names = "^0.0.5"
-    pep8-naming = "^0.13.3"
-    pylint = {version = "^2.17.7", python = ">=3.9"}
-    ruff = "^0.0.254"
-    darglint = "^1.8.1"
+[tool.hatch.envs.docs.scripts]
+build = [
+  "sphinx-build docs {args:build/sphinx/html}"
+]
 
-[tool.poetry.group.docs]
-    optional = true
+[tool.ruff]
+# Allow lines to be as long as 88.
+line-length = 88
+target-version = "py310"
+extend-exclude = ["src/arithmetic/c-arithmetic"]
 
-[tool.poetry.group.docs.dependencies]
-    Sphinx = {version = "^8.1", python = ">=3.9"}
-    sphinx-rtd-theme = "~3.0"
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  # Missing type annotation for `self` in method
+  "ANN101",
+  # One-line docstring should fit on one line
+  "D200",
+  # Prefer absolute imports over relative imports
+  "TID252",
+  # Trailing comma missing
+  "COM812",
+  # Implicitly concatenated string literals on one line
+  "ISC001"
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+  # Missing return type annotation for public function
+  "ANN201",
+  # Missing docstring in public module
+  "D100",
+  # Missing docstring in public class
+  "D101",
+  # Missing docstring in public method
+  "D102",
+  # Missing docstring in public package
+  "D104",
+  # File is part of an implicit namespace package. Add an `__init__.py`
+  "INP001",
+  # Use a regular `assert` instead of unittest-style `assertEqual`
+  "PT009",
+  # Use `pytest.raises` instead of unittest-style `assertRaises`
+  "PT027",
+  # Name compared with itself
+  "PLR0124",
+  # Too many statements
+  "PLR0915"
+]
+"docs/conf.py" = [
+  # Variable is shadowing a Python builtin
+  "A001",
+  # File is part of an implicit namespace package. Add an `__init__.py`
+  "INP001"
+]
 
 [tool.mypy]
-exclude = ["arithmetic/c-arithmetic"]
+exclude = ["src/arithmetic/c-arithmetic"]

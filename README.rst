@@ -13,7 +13,7 @@ Install *py-arithmetic* using the bash commands:
     $ git clone https://github.com/chdemko/py-arithmetic.git
     $ cd py-arithmetic
     $ git submodule update --init --recursive
-    $ poetry install --with docs
+    $ hatch shell
 
 Building
 --------
@@ -22,7 +22,7 @@ Build *py-arithmetic* using the bash commands:
 
 .. code-block:: shell-session
 
-    $ poetry build
+    $ hatch build
     $ ls dist
 
 Documentation
@@ -32,7 +32,7 @@ Build the documentation using the bash commands:
 
 .. code-block:: shell-session
 
-    $ poetry run sphinx-build docs/ build/sphinx/html/
+    $ hatch run docs:build
 
 Testing
 -------
@@ -41,9 +41,8 @@ Test *py-arithmetic* using the bash commands:
 
 .. code-block:: shell-session
 
-    $ poetry run tox
-    $ poetry run tox -e style
-    $ poetry run tox -e linter
+    $ hatch test
+    $ hatch fmt --check
 
 
 .. |cmake| image:: https://github.com/chdemko/py-arithmetic/actions/workflows/python-package.yml/badge.svg
