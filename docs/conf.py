@@ -15,9 +15,9 @@ year = datetime.datetime.now(tz=datetime.UTC).date().year
 # noinspection PyShadowingBuiltins
 copyright = f"2022-{year}, {author}"
 
-python_path = str(Path("..").resolve())
-
 # -- General configuration ------------------------------------------------
+
+needs_sphinx = "8.1"
 
 extensions = [
     "sphinx.ext.autodoc",
@@ -28,7 +28,12 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
     "sphinx_rtd_theme",
+    "sphinx_copybutton",
 ]
+
+copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_is_regexp = True
+copybutton_line_continuation_character = "\\"
 
 plantuml_output_format = "svg_img"
 

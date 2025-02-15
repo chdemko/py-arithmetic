@@ -12,18 +12,8 @@ license = {text = "BSD-3-Clause"}
 license-files = {paths = ["LICENSE"]}
 authors = [{name = "Christophe Demko", email = "chdemko@gmail.com"}]
 
-[tool.hatch.build]
-include = [
-  "src/**/*.py",
-  "src/**/*.pyi",
-  "src/**/py.typed"
-]
-
 [tool.hatch.build.targets.wheel]
 packages = ["src/arithmetic"]
-include = [
-  "src/**/*.so"
-]
 exclude = [
   "src/arithmetic/c-arithmetic",
   "src/**/*.c",
@@ -39,13 +29,8 @@ dependencies = [
 
 [tool.hatch.build.targets.sdist]
 packages = ["src"]
-include = [
-  "src/**/*.pyx",
-  "src/**/*.pxd"
-]
 exclude = [
-  "src/arithmetic/c-arithmetic",
-  "src/**/*.c",
+  "src/arithmetic/_arithmetic.c",
   "src/**/*.so"
 ]
 

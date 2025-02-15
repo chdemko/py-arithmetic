@@ -26,7 +26,7 @@ class CustomBuildHook(BuildHookInterface):
         Parameters
         ----------
         version
-            The verion ben built
+            The version been built
         build_data
             The building data
         """
