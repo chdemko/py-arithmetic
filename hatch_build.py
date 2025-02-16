@@ -40,15 +40,13 @@ class CustomBuildHook(BuildHookInterface):
         build_data["pure_python"] = False
         build_data["infer_tag"] = True
 
-        # Setting directories
-        directories = self._get_directories()
-
         # Cleanup project
         self._clean()
 
         # Getting cython files
         extensions = [
-            Extension("*", [Path(directory, "*.pyx")]) for directory in directories
+            Extension("*", [Path(directory, "*.pyx")])
+            for directory in self._get_directories()
         ]
 
         # Cythonize modules
