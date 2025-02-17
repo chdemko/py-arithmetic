@@ -14,6 +14,7 @@ authors = [{name = "Christophe Demko", email = "chdemko@gmail.com"}]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/arithmetic"]
+# Keep only necessary files
 exclude = [
   "src/arithmetic/c-arithmetic",
   "src/**/*.c",
@@ -22,6 +23,7 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel.hooks.custom]
+# Install Cython and setuptools
 dependencies = [
   "setuptools~=75.8",
   "Cython~=3.0"
@@ -29,12 +31,14 @@ dependencies = [
 
 [tool.hatch.build.targets.sdist]
 packages = ["src"]
+# Keep only necessary files
 exclude = [
   "src/arithmetic/_arithmetic.c",
   "src/**/*.so"
 ]
 
 [tool.hatch.envs.docs]
+# Dependencies for building the docs
 dependencies = [
   "Sphinx~=8.1",
   "sphinx-rtd-theme~=3.0",
@@ -46,6 +50,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.docs.scripts]
+# Shortcut for running the docs with $ hatch run docs:build
 build = [
   "sphinx-build docs {args:build/sphinx/html}"
 ]
