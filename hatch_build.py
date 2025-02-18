@@ -37,6 +37,7 @@ class CustomBuildHook(BuildHookInterface):
         build_data
             The building data
         """
+        build_data["artifacts"] = ["src/**/*.so"]
         build_data["pure_python"] = False
         build_data["infer_tag"] = True
 

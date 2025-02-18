@@ -16,7 +16,8 @@ authors = [{name = "Christophe Demko", email = "chdemko@gmail.com"}]
 packages = ["src/arithmetic"]
 # Keep only necessary files
 exclude = [
-  "src/arithmetic/c-arithmetic",
+  "src/**/c-*",
+  "src/**/*.so",
   "src/**/*.c",
   "src/**/*.pyx",
   "src/**/*.pxd"
@@ -33,7 +34,7 @@ dependencies = [
 packages = ["src"]
 # Keep only necessary files
 exclude = [
-  "src/arithmetic/_arithmetic.c",
+  "src/arithmetic/*.c",
   "src/**/*.so"
 ]
 
