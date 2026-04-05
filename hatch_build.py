@@ -44,10 +44,38 @@ class CustomBuildHook(BuildHookInterface):
         # Cleanup project
         self._clean()
 
-        # Getting cython files
+        # Configure the Cython extension and linked C sources.
         extensions = [
-            Extension("*", [Path(directory, "*.pyx")])
-            for directory in self._get_directories()
+            Extension(
+                "arithmetic._arithmetic",
+                [
+                    str(Path("src", "arithmetic", "_arithmetic.pyx")),
+                    str(
+                        Path(
+                            "src",
+                            "arithmetic",
+                            "c-arithmetic",
+                            "src",
+                            "numeric",
+                            "arithmetic.c",
+                        )
+                    ),
+                    str(
+                        Path(
+                            "src",
+                            "arithmetic",
+                            "c-arithmetic",
+                            "src",
+                            "numeric",
+                            "gcd.c",
+                        )
+                    ),
+                ],
+                include_dirs=[
+                    str(Path("src", "arithmetic", "c-arithmetic", "src", "numeric"))
+                ],
+                extra_compile_args=["-O3"],
+            )
         ]
 
         # Cythonize modules

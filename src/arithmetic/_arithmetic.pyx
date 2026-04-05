@@ -1,7 +1,3 @@
-# distutils: sources = src/arithmetic/c-arithmetic/src/numeric/arithmetic.c
-# distutils: include_dirs = src/arithmetic/c-arithmetic/src/numeric
-# distutils: extra_compile_args = -O3
-
 cimport arithmetic.c_arithmetic
 
 def gcd(a: int, b: int) -> int:
