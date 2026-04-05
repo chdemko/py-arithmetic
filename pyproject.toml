@@ -46,7 +46,7 @@ dependencies = [
   "sphinx-copybutton~=0.5",
   "nbsphinx~=0.9",
   "sphinxcontrib-plantuml~=0.31",
-  "sphinx-autodoc-typehints~=3.9",
+  "sphinx-autodoc-typehints~=3.6",
   "sphinx-codeautolink~=0.17"
 ]
 
