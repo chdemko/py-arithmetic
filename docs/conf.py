@@ -16,7 +16,7 @@ copyright = f"2017-{year}, {author}"
 
 # -- General configuration ------------------------------------------------
 
-needs_sphinx = "9.1"
+needs_sphinx = "9.0"
 
 extensions = [
     "sphinx.ext.autodoc",
