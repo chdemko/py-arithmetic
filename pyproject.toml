@@ -41,7 +41,7 @@ exclude = [
 [tool.hatch.envs.docs]
 # Dependencies for building the docs
 dependencies = [
-  "Sphinx~=9.1",
+  "Sphinx~=9.0",
   "sphinx-rtd-theme~=3.1",
   "sphinx-copybutton~=0.5",
   "nbsphinx~=0.9",
