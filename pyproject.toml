@@ -8,8 +8,8 @@ name = "py-arithmetic"
 description = "A sample cython wrapper"
 readme = "README.rst"
 requires-python = ">=3.10,<3.15"
-license = {text = "BSD-3-Clause"}
-license-files = {paths = ["LICENSE"]}
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
 authors = [{name = "Christophe Demko", email = "chdemko@gmail.com"}]
 
 [tool.hatch.build.targets.wheel]
