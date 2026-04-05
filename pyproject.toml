@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "Cython>=3.2,<3.3", "setuptools>=82,<83"]
 build-backend = "hatchling.build"
 
 [project]
@@ -26,8 +26,8 @@ exclude = [
 [tool.hatch.build.targets.wheel.hooks.custom]
 # Install Cython and setuptools
 dependencies = [
-  "setuptools~=80.9",
-  "Cython~=3.1"
+  "setuptools~=82.0",
+  "Cython~=3.2"
 ]
 
 [tool.hatch.build.targets.sdist]
@@ -41,12 +41,12 @@ exclude = [
 [tool.hatch.envs.docs]
 # Dependencies for building the docs
 dependencies = [
-  "Sphinx~=8.2",
-  "sphinx-rtd-theme~=3.0",
+  "Sphinx~=9.1",
+  "sphinx-rtd-theme~=3.1",
   "sphinx-copybutton~=0.5",
   "nbsphinx~=0.9",
   "sphinxcontrib-plantuml~=0.31",
-  "sphinx-autodoc-typehints~=3.5",
+  "sphinx-autodoc-typehints~=3.9",
   "sphinx-codeautolink~=0.17"
 ]
 
@@ -56,10 +56,13 @@ build = [
   "sphinx-build docs {args:build/sphinx/html}"
 ]
 
+[tool.hatch.envs.hatch-static-analysis]
+config-path = "none"
+
 [tool.ruff]
 # Allow lines to be as long as 88.
 line-length = 88
-target-version = "py310"
+target-version = "py311"
 extend-exclude = ["src/arithmetic/c-arithmetic"]
 
 [tool.ruff.lint]
@@ -76,7 +79,9 @@ ignore = [
   # Trailing comma missing
   "COM812",
   # Implicitly concatenated string literals on one line
-  "ISC001"
+  "ISC001",
+  # Failed to parse pyproject.toml: wanted string or table
+  "RUF200"
 ]
 
 [tool.ruff.lint.pydocstyle]

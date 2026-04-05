@@ -2,9 +2,8 @@
 
 import datetime
 import os
-from pathlib import Path
-
 import tomllib
+from pathlib import Path
 
 with Path("..", "pyproject.toml").resolve().open("rb") as f:
     data = tomllib.load(f)
@@ -13,11 +12,11 @@ with Path("..", "pyproject.toml").resolve().open("rb") as f:
 version = os.popen("hatch version").readline().strip()  # noqa: S605, S607
 year = datetime.datetime.now(tz=datetime.UTC).date().year
 # noinspection PyShadowingBuiltins
-copyright = f"2022-{year}, {author}"
+copyright = f"2017-{year}, {author}"
 
 # -- General configuration ------------------------------------------------
 
-needs_sphinx = "8.1"
+needs_sphinx = "9.1"
 
 extensions = [
     "sphinx.ext.autodoc",
